@@ -16,7 +16,41 @@
 ########## ENTER YER CODE BELOW THIS LINE ##########
 
 
+def analyze_traffic(port, size):
+    """Return risk assessment based on port and data size."""
+    if port == 80:
+        if size > 100:
+            return "MEDIUM RISK: Large unencrypted data transfer detected."
+        else:
+            return "LOW RISK: Normal HTTP traffic."
+    elif port == 22:
+        if size > 500:
+            return "HIGH RISK: Potential unauthorized remote access detected!"
+        else:
+            return "MEDIUM RISK: SSH activity observed."
+    elif port == 443:
+        return "LOW RISK: Secure encrypted transfer detected."
+    else:
+        return "UNKNOWN: Unrecognized traffic pattern."
 
+
+while True:
+    print("=== Network Traffic Security Analyzer ===\n")
+
+    # Get user input
+    port = int(input("Enter the port number (e.g., 80, 22, 443, 3389): "))
+    size = int(input("Enter the data transfer size in megabytes (MB): "))
+    print()
+
+    # Output log
+    print("FIREWALL LOG:")
+    print(f"Port: {port}, Transfer Size: {size} MB")
+
+    assessment = analyze_traffic(port, size)
+    print(f"Risk Assessment: {assessment}")
+    print("------------------------")
+
+    print()
 
 
 
